@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row card-container">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let activity of activities;trackBy:trackbyService.activity">
+            <div class="card">
+                <div class="card-header">
+                    <a [routerLink]="['/activities',activity.id,'details']" class="white">
+                        {{activity.name | capitalize }}
+                    </a>
+                    <!--<a [routerLink]="['/activities',activity.id,'edit']">
+                        <i title="Edit"
+                           class="pull-right glyphicon glyphicon-edit edit-icon white"></i>
+                    </a>-->
+                </div>
+                <div class="card-body">
+                    <div class="clearfix">
+                        <div class="pull-left card-body-left">
+                                <img src="{{ getImgPath(activity) }}" class="card-image" />
+
+                        </div>
+                        <div class="pull-left card-body-right">
+                        <div class="card-body-content">{{activity.date }}</div>
+                        <div class="card-body-content">{{activity.address | trim }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!activities.length">
+            No Records Found
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div *ngIf="activity">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="images/{{activity.picture | lowercase}}.png" class="details-image" />
+    </div>
+    <div class="col-md-10">
+      <h3>{{ activity.name | capitalize }} <i *ngIf="activity.registerUrl">(registration needed please)</i> <br/></h3>
+      <h4><div [innerHTML]="activity.description"></div></h4>
+      <h4>Organized by  <a href="{{ activity.bewelcome }}" target="_blank">{{ activity.organizerName }}</a>
+        <br />
+        When ? {{ activity.date }}<br/>
+        Where ? {{ activity.address }}<br/>
+      </h4>
+      <div *ngIf="activity.registerUrl"><h4>
+        <b>Registration</b><br/><br/>
+        <p>Only people who registered to this activity will be able to join !<br/>
+        <i>Maybe you will have to pay for this activity on the BeWelcome page, click here: </i><br/><br/>
+          <a href="{{ activity.registerUrl }}" target="_blank"><img src="images/register.png" /></a></p></h4>
+      </div>
+      <div *ngIf="!activity.registerUrl"><h5><i>
+        (no registration needed, but please go to the main BeWelcome activity page to attend)</i></h5>
+      </div>
+    </div>
+  </div>    
+  <br /><br />
+  <div class="row">
+    <div class="col-md-12">
+      <cm-map [latitude]="activity.latitude"
+           [longitude]="activity.longitude"
+           [zoom]="13"
+           [enabled]="mapEnabled"
+           [markerText]="'<h3>' + activity.name + '</h3>' + activity.date + ' with ' + activity.organizerName"></cm-map>
+    </div>
+  </div>
+</div>   
+<div *ngIf="!activity" class="row">
+   No activity found
+</div>  

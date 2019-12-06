@@ -1,0 +1,14 @@
+.activity-form input[type='text'],
+.activity-form input[type='number'],
+.activity-form input[type='email'],
+.activity-form select {
+    width:100%;
+}
+
+.activity-form .ng-invalid {
+  border-left: 5px solid #a94442;
+}
+
+.activity-form .ng-valid {
+  border-left: 5px solid #42A948;
+}

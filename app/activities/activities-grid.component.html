@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row grid-container">
+        <div class="col-md-10">
+            <div class="table">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <!-- le tri ne marche pas avec la pagination-->
+                            <th> <!--cm-sort-by="name" (sorted)="sort($event)"-->Activity</th>
+                            <th> <!--cm-sort-by="date" (sorted)="sort($event)"-->Date/time</th>
+                            <th> <!--cm-sort-by="address" (sorted)="sort($event)"-->Address</th>
+                            <!-- Or you can do this directly rather than using sort-by directive -->
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let activity of activities;trackBy:trackbyService.activity">
+                            <td><img src="{{ getImgPath(activity) }}"
+                                    class="grid-image" alt="Activity Image" /></td>
+                            <td><a [routerLink]="['/activities',activity.id,'details']">{{ activity.name | capitalize }}</a></td>
+                            <td>{{ activity.date }}</td>
+                            <td>{{ activity.address }}</td>
+                        </tr>
+                        <tr *ngIf="!activities.length">
+                            <td>&nbsp;</td>
+                            <td colspan="7">No Records Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
